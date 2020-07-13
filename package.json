@@ -8,7 +8,7 @@
     "build": "webpack --entry ./app/public/js/index.js --output-filename bundle.min.js --output-path ./app/public/js ",
     "start": "npm run init-db && npm start --exec babel-node server.js",
     "sequelize-skeleton": "npx sequelize init:models; npx sequelize init:config",
-    "init-db": "cd DIR_WHERE_MYSQL_BIN_IS && echo 'DROP DATABASE IF EXISTS agri-api; CREATE DATABASE agri-api CHARACTER SET utf8 COLLATE utf8_general_ci' | ./mysql -u root && cd -"
+    "init-db": "cd /etc/ && echo 'DROP DATABASE IF EXISTS agri-api; CREATE DATABASE agri-api CHARACTER SET utf8 COLLATE utf8_general_ci' | ./mysql -u root && cd -"
   },
   "author": "",
   "license": "ISC",
