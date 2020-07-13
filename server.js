@@ -20,7 +20,7 @@ var app = express();
 server.applyMiddleware({ app });
 app.use(cors());
 
-/*const connection = new Sequelize('agri-api', 'root', 'kabylie34', {
+/*const connection = new Sequelize('agri_api', 'root', 'kabylie34', {
     host: 'localhost',
     dialect: 'mysql'
   });*/
@@ -42,7 +42,7 @@ app.use((req, res, next) => {
       host     : 'localhost',
       user     : 'root',
       password : 'kabylie34',
-      database : 'agri-api'
+      database : 'agri_api'
     });
     req.mysqlDb.connect();
     next();
