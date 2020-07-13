@@ -1,3 +1,4 @@
+bcrypt =require('bcrypt');
 module.exports = {
     
     Query: {
@@ -9,7 +10,7 @@ module.exports = {
       createUser: (parent, { email, password }, { db }, info) =>
         db.user.create({
           email: email,
-          password: password
+          password: bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)
           
         }),
       updateUser: (parent, { email, password, id }, { db }, info) =>
