@@ -16,24 +16,15 @@ const server = new ApolloServer({
     context: { db }
   });
 
-
-/*var schema = buildSchema(`
-    type Query {
-        message: String
-    }
-`);// Root resolver*/
-var root = {
-    message: () => 'Hello World!'
-};// Create an express server and a GraphQL endpoint
 var app = express();
 server.applyMiddleware({ app });
 app.use(cors());
 
-const connection = new Sequelize('agri-api', 'root', 'kabylie34', {
+/*const connection = new Sequelize('agri-api', 'root', 'kabylie34', {
     host: 'localhost',
     dialect: 'mysql'
-  });
-  connection
+  });*/
+  db.sequelize
   .sync({
       logging: console.log,
       force: true
@@ -42,10 +33,11 @@ const connection = new Sequelize('agri-api', 'root', 'kabylie34', {
       console.log('connexion réussie à la base de données agri-api');
   })
   .catch(err=>{
+      console.log(db.sequelize)
       console.error('echec de connexion à la base de données'+ err);
   })
 //database connection
-/*app.use((req, res, next) => {
+app.use((req, res, next) => {
     req.mysqlDb = mysql.createConnection({
       host     : 'localhost',
       user     : 'root',
@@ -54,7 +46,7 @@ const connection = new Sequelize('agri-api', 'root', 'kabylie34', {
     });
     req.mysqlDb.connect();
     next();
-  });*/
+  });
 app.use('/graphql', express_graphql({
     schema: typeDefs,
     rootValue: resolvers,
